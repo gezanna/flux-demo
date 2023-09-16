@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: cluster-config
+spec:
+  chart:
+    spec:
+      chart: elasticsearch
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: elasticsearch
+  install:
+    createNamespace: true
+  interval: 1m0s
+  releaseName: elasticsearch
+  targetNamespace: elasticsearch
